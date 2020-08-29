@@ -52,8 +52,10 @@ class Blockchain(object):
     def valid_proof(self):
         # To ensure whether a submitted block to the blockchain solves the
         # problem
-
-        pass
+        '''Validates block'''
+        guess = f'{last_proof}{proof}'.encode()
+        guess_hash = hashlib.sha256(guess).hexdigest()
+        return guess_hash[:4] == "0000"
 
     def valid_chain(self):
         # Check if subsequent blocks in the chain are valid
