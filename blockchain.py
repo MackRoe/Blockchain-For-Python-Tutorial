@@ -3,14 +3,22 @@ class Blockchain(object):
     def __init__(self):
 
         self.chain = []
-
         self.current_transactions = []
+        self.new_block(previous_hash=1, proof=100)
 
-    def new_block(self):
-
+    def new_block(self, proof, previous_hash=None):
         # This function creates new blocks and then adds to the existing chain
-
-        pass
+        '''This function will contain two variables, proof & previous_hash'''
+        block = {
+            'index': len(self.chain) + 1,
+            'timestamp': time(),
+            'proof': proof,
+            previous_hash: previous_hash or self.hash(self.chain[-1]),
+        }
+        # set the current transaction list to empty
+        self.current_transactions = []
+        self.chain.append(block)
+        return block
 
     def new_transaction(self):
         ''' Create a new transaction that will be sent to the next block.
