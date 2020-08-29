@@ -32,7 +32,9 @@ class Blockchain(object):
     @staticmethod
     def hash(block):
         # Used for hashing a blocks
-        pass
+        '''Creates a SHA256 block hash & ensures the dictionary is ordered'''
+        block_string = json.dumps(block, sort_keys=True).encode()
+        return hashlib.sha256(block_string).hexdigest()
 
     def register_node(self):
         # To register a new node and add it to the network
@@ -50,4 +52,4 @@ class Blockchain(object):
     @property
     def last_block(self):
         # calls and returns the last block of the chain
-        pass
+        return self.chain[-1]
