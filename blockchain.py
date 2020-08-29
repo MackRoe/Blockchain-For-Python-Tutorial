@@ -40,9 +40,19 @@ class Blockchain(object):
         # To register a new node and add it to the network
         pass
 
+    def proof_of_work(self, last_proof):
+        '''Implement concensus algorythm. Requires two variables, self &
+        last_proof'''
+        proof = 0
+        while self.valid_proof(last_proof, proof) is False:
+            proof += 1
+        return proof
+
+    @staticmethod
     def valid_proof(self):
         # To ensure whether a submitted block to the blockchain solves the
         # problem
+
         pass
 
     def valid_chain(self):
