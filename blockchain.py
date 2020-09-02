@@ -25,9 +25,13 @@ class Blockchain(object):
         Contains three variables: sender, recipient, amount '''
         # This function adds a new transaction to already existing transactions
         self.current_transactions.append(
-            {‘sender’: sender, ‘recipient’: recipient, ‘amount’: amount}
-                )
-        return self.last_block[‘index’] + 1
+            {
+                'sender': sender,
+                'recipient': recipient,
+                'amount': amount
+                }
+            )
+        return self.last_block['index'] + 1
 
     @staticmethod
     def hash(block):
