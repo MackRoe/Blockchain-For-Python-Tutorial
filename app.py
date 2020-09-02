@@ -13,9 +13,18 @@ def mine():
 
 @app_route('/transactions/new', methods=['POST'])
 def new_transaction():
-    return 'Adding a new Transaction'
+    values = request.get_json()
+    # check if required data is available
+    required = ['sender','recipient','amount']
+    if not all(k in values for k in required):
+        return 'Missing Values', 400
+    # create new transaction
+    index = blockchain.new_transaction(values['sender'], values['recipient', values['amount']])
+    # NOTE - square bracket placement seems odd in line above
+    response = {'message':f'Transaction is scheduled to be added to Block No.{index}'}
+    return jsonify(response), 201
 
-@app_router('/chain', methods=['GET'])
+@app_route('/chain', methods=['GET'])
 def full_chain():
     response = {
         'chain': blockchain.chain,
