@@ -11,3 +11,6 @@ The objective of this project is to complete the tutorial found at the following
 - Flask
 - Requests
 - virtualenv
+
+### Current state
+* 404
