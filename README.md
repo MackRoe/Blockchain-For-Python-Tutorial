@@ -12,5 +12,10 @@ The objective of this project is to complete the tutorial found at the following
 - Requests
 - virtualenv
 
+## To Run
+- Navigate to local directory
+- Clone repo
+- In terminal, enter `flask run`
+
 ### Current state
 * 404
