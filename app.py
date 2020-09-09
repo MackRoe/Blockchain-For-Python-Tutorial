@@ -1,13 +1,16 @@
+import requests
 from blockchain import Blockchain
+from flask import Flask, request, jsonify
+from uuid import uuid4
 # Create app node
 
 app = Flask(__name__)
-name_identifier = str(uuid4().replace('-',''))
+name_identifier = str(uuid4()).replace('-','')
 
 # Initialize blockchain
 blockchain = Blockchain()
 
-@app_route('/mine', methods=['GET'])
+@app.route('/mine', methods=['GET'])
 def mine():
     '''Proof of Work calculation, forge new blockchain and add it to the chain,
     reward the miner for work completed'''
@@ -33,7 +36,7 @@ def mine():
     }
     return jsonify(response), 200
 
-@app_route('/transactions/new', methods=['POST'])
+@app.route('/transactions/new', methods=['POST'])
 def new_transaction():
     values = request.get_json()
     # check if required data is available
@@ -46,7 +49,7 @@ def new_transaction():
     response = {'message':f'Transaction is scheduled to be added to Block No.{index}'}
     return jsonify(response), 201
 
-@app_route('/chain', methods=['GET'])
+@app.route('/chain', methods=['GET'])
 def full_chain():
     response = {
         'chain': blockchain.chain,
